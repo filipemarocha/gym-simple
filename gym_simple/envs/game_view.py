@@ -2,6 +2,7 @@ import os, sys
 import pygame
 import numpy as np
 
+os.environ['SDL_VIDEODRIVER'] = 'dummy'
 WHITE_RGB = 255, 255, 255
 
 class GameView:
