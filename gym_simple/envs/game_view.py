@@ -5,7 +5,6 @@ import numpy as np
 os.environ['SDL_VIDEODRIVER'] = 'dummy'
 os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
-snd_func_card_driver
 WHITE_RGB = 255, 255, 255
 
 class GameView:
