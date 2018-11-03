@@ -65,9 +65,10 @@ class GameView:
                     (column * 120, row * 120, 120, 120), 1)
 
     def update(self, state):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        pygame.init()
+        #for event in pygame.event.get():
+        #    if event.type == pygame.QUIT:
+        #        sys.exit()
         if self.screen is None:
             self.screen = pygame.display.set_mode(self.screen_size)
         self.draw_state(state)
