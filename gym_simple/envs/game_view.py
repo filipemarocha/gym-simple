@@ -65,6 +65,7 @@ class GameView:
                     (column * 120, row * 120, 120, 120), 1)
 
     def update(self, state):
+        pygame.init()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
