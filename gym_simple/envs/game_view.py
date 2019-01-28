@@ -2,8 +2,8 @@ import os, sys
 import pygame
 import numpy as np
 
-os.environ['SDL_VIDEODRIVER'] = 'dummy'
-os.environ['SDL_AUDIODRIVER'] = 'dsp'
+#os.environ['SDL_VIDEODRIVER'] = 'dummy'
+#os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 WHITE_RGB = 255, 255, 255
 
@@ -68,7 +68,7 @@ class GameView:
                     (column * 120, row * 120, 120, 120), 1)
 
     def update(self, state):
-        pygame.init()
+        #pygame.init()
         #for event in pygame.event.get():
         #    if event.type == pygame.QUIT:
         #        sys.exit()
