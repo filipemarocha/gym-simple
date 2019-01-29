@@ -2,6 +2,7 @@ import os, sys
 import pygame
 import numpy as np
 
+# If you want the RGB data without rendering uncomment these:
 #os.environ['SDL_VIDEODRIVER'] = 'dummy'
 #os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
@@ -68,10 +69,9 @@ class GameView:
                     (column * 120, row * 120, 120, 120), 1)
 
     def update(self, state):
-        #pygame.init()
-        #for event in pygame.event.get():
-        #    if event.type == pygame.QUIT:
-        #        sys.exit()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
         if self.screen is None:
             self.screen = pygame.display.set_mode(self.screen_size)
         self.draw_state(state)

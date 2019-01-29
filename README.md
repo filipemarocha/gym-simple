@@ -1,12 +1,17 @@
 # Simple OpenAI Gym Environment
 
 A simple 2D grid environment where a robot has the goal to put the ball in the box.
+The agent can pick-up and put-down, the box or the ball, but can carry only one of the objects at one time.  
 
-Requirements:
-- Python 3
-- OpenAI Gym
-- NumPy
-- PyGame
+You can choose between a fixed: 'PutBallInBoxEnvFixed' (initial state selected randomly but the same, every episode) or randomly variable: 'PutBallInBoxEnvRandom' (initial state selected randomly in each episode). 
+
+There are 4 sizes of the grid available:
+- 3x3
+- 5x5
+- 8x8
+- 20x20
+
+![screenshot](gym_simple/images/screenshot.png)
 
 ## Installation
 
@@ -15,6 +20,11 @@ Clone this repository and install:
 cd gym-simple
 pip3 install -e .
 ```
+Requirements:
+- Python 3
+- OpenAI Gym
+- NumPy
+- PyGame
 
 ## Basic Usage
 
