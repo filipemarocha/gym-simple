@@ -8,7 +8,7 @@ from gym_simple.envs.game_view import GameView
 
 class PutBallInBoxEnv(gym.Env):
 
-    def __init__(self, fixed_initial_state, space_size):
+    def __init__(self, fixed_initial_state, space_size, seed=13):
         self.current_episode = 0
         self.current_step = 0
         # The same initial state will be used for every episode if
@@ -30,10 +30,10 @@ class PutBallInBoxEnv(gym.Env):
         # To reach the goal: put the ball in the box, the agent needs to pick-up
         # the ball, be in the cell where the box is and put the ball down
         self.ball_in_box = False
+        # Seed the random number generator
+        self.seed(seed=seed)
         # Initialize state
-        self.initial_state = self._get_initial_random_state()
-        # So that updates in current state don't affect initial state
-        self.current_state = copy.deepcopy(self.initial_state)
+        self.initial_state = None
         # Initialize Game View
         self.game_view = GameView(space_size)
 
@@ -72,18 +72,21 @@ class PutBallInBoxEnv(gym.Env):
         self.current_episode += 1
         self.current_step = 0
         self.ball_in_box = False
-        # If initial state is not fixed, get a new initial random state
+        # If initial state is not yet defined, get one
+        if self.initial_state is None:
+            self.initial_state = self._get_initial_random_state()
+        # If initial state is not fixed, get a new initial random state each episode
         if not self.fixed_initial_state and self.current_episode > 1:
             self.initial_state = self._get_initial_random_state()
-        # So that updates in current state don't affect initial state
+        # Deep copy so that updates in current state don't affect initial state
         self.current_state = copy.deepcopy(self.initial_state)
 
     def render(self, mode='human', close=False):
         return self.game_view.update(self.current_state)
 
     def _get_random_coordinates(self):
-        return (np.random.randint(self.space_size[0]),
-            np.random.randint(self.space_size[1]))
+        return (self.np_random.randint(self.space_size[0]),
+            self.np_random.randint(self.space_size[1]))
 
     def _get_initial_random_state(self):
         # Place randomly one agent, one box and one ball on the floor
@@ -198,6 +201,10 @@ class PutBallInBoxEnv(gym.Env):
         if global_state[0] != global_state[2] and global_state[3] == 2:
             return False
         return True
+
+    def seed(self, seed=13):
+        # Seed the random number generator
+        self.np_random, _ = seeding.np_random(seed)
 
 
 class PutBallInBoxEnvRandom3x3(PutBallInBoxEnv):
